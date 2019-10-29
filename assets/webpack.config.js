@@ -35,13 +35,14 @@ module.exports = (env, options) => ({
       },
       {
 	test: /\.scss$/,
-	use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']      }
+	use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']     
+      }
     ]
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
     new CopyWebpackPlugin([{ from: 'static/', to: '../' }]),
-        new webpack.ProvidePlugin({
+    new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
       Popper: ['popper.js', 'default'],
