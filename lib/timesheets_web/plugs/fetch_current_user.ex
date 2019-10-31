@@ -1,4 +1,4 @@
-efmodule TimesheetsWeb.Plugs.FetchCurrentUser do
+defmodule TimesheetsWeb.Plugs.FetchCurrentUser do
   import Plug.Conn
 
   def init(args), do: args
