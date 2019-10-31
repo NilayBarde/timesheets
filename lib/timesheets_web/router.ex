@@ -3,6 +3,7 @@ defmodule TimesheetsWeb.Router do
 
   pipeline :browser do
     plug :accepts, ["html"]
+    plug TimesheetsWeb.Plugs.FetchCurrentUser
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
@@ -17,6 +18,8 @@ defmodule TimesheetsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/sessions", SessionController, 
+      only: [:new, :create, :delete], singleton: true 
   end
 
   # Other scopes may use custom stacks.
