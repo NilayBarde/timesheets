@@ -7,8 +7,6 @@ defmodule Timesheets.Users.User do
     field :name, :string
     field :password_hash, :string
 
-    has_many :photos, Timesheets.Photos.Photo
-
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
 
