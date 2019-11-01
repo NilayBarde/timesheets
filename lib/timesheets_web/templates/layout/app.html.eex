@@ -22,8 +22,10 @@
             <%= if @current_user do %>
               <%= nav_link(@conn, "Your Timesheets",
                 Routes.user_path(@conn, :show, @current_user)) %>
-		<%= if @current_user.is_manager do %>
+ 		<%= if @current_user.is_manager do %>
 		  <%= nav_link(@conn, "Users", Routes.user_path(@conn, :index)) %>
+		<% else %>
+		  <%= nav_link(@conn, "Create Timesheet", Routes.user_path(@conn, :index)) %>
               <% end %>
 	    <% end %>
           </ul>

@@ -19,7 +19,7 @@ defmodule Timesheets.Users.User do
     user
     |> cast(attrs, [:email, :name, :is_manager, :password, :password_confirmation])
     |> validate_confirmation(:password)
-    |> validate_length(:password, min: 8) # too short
+    |> validate_length(:password, min: 12)
     |> hash_password()
     |> validate_required([:email, :name, :password_hash])
   end
