@@ -20,21 +20,25 @@
           <ul class="navbar-nav mr-auto">
             <%= nav_link(@conn, "Home", Routes.page_path(@conn, :index)) %>
             <%= if @current_user do %>
-              <%= nav_link(@conn, "Your Photos",
+              <%= nav_link(@conn, "Your Timesheets",
                 Routes.user_path(@conn, :show, @current_user)) %>
-            <% end %>
-            <%= nav_link(@conn, "Users", Routes.user_path(@conn, :index)) %>
+		<%= if @current_user.is_manager do %>
+		  <%= nav_link(@conn, "Users", Routes.user_path(@conn, :index)) %>
+              <% end %>
+	    <% end %>
           </ul>
         </div>
         <div class="col-4 text-light">
           <%= if @current_user do %>
+	  <%= if @current_user.is_manager do %>
+	    <%= link("Register", to: Routes.user_path(@conn, :new)) %>
+	  <% end %>
             User: <%= link(@current_user.name,
               to: Routes.user_path(@conn, :show, @current_user)) %>
             (<%= link("Logout", to: Routes.session_path(@conn, :delete),
               method: :delete) %>)
           <% else %>
-            <%= link("Login", to: Routes.session_path(@conn, :new)) %> |
-            <%= link("Register", to: Routes.user_path(@conn, :new)) %>
+            <%= link("Login", to: Routes.session_path(@conn, :new)) %> 
           <% end %>
         </div>
       </nav>
