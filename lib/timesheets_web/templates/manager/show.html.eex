@@ -1,0 +1,23 @@
+<div class="container">
+  <h1><%= @manager.name %></h1>
+  <h6><%= @manager.email %></h6>
+  
+  <h4>Your Workers: </h4>
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Timesheets</th>
+      <th>Delete</th>
+    </thead>
+    <%= for worker <- @manager.workers do %>
+      <tr>
+        <td><%= worker.name %></td>
+        <td><%= worker.email %></td>
+        <td><%= link "Show Timesheets", to: Routes.worker_path(@conn, :show, worker) %></td>
+        <td><%= link "Delete", to: Routes.worker_path(@conn, :delete, worker), method: :delete, data: [confirm: "Are you sure?"] %></td>
+      </tr> 
+    <% end %>
+  </table>
+
+</div>

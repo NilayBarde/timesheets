@@ -1,8 +1,8 @@
-defmodule Timesheets.Users.User do
+defmodule Timesheets.Users.Manager do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "users" do
+  schema "managers" do
     field :email, :string
     field :name, :string
     field :password_hash, :string
@@ -14,9 +14,9 @@ defmodule Timesheets.Users.User do
   end
 
   @doc false
-  def changeset(user, attrs) do
-    user
-    |> cast(attrs, [:email, :name, :is_manager, :password, :password_confirmation])
+  def changeset(manager, attrs) do
+    manager
+    |> cast(attrs, [:email, :name, :password, :password_confirmation])
     |> validate_confirmation(:password)
     |> validate_length(:password, min: 12)
     |> hash_password()

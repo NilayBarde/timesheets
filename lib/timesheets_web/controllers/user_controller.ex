@@ -5,8 +5,13 @@ defmodule TimesheetsWeb.UserController do
   alias Timesheets.Users.User
 
   def index(conn, _params) do
-    users = Users.list_users()
-    render(conn, "index.html", users: users)
+    curr_user = get_session(conn, :user_type)
+    if curr_user === "manager" do
+      users = Users.list_users()
+      render(conn, "index.html", users: users)
+    else
+      conn |> redirect(to: Routes.page_path(conn, :index))
+    end
   end
 
   def new(conn, _params) do
@@ -52,11 +57,17 @@ defmodule TimesheetsWeb.UserController do
   end
 
   def delete(conn, %{"id" => id}) do
-    user = Users.get_user!(id)
-    {:ok, _user} = Users.delete_user(user)
+    curr_user = get_session(conn, :user_type)
+    if curr_user === "manager" do
+     curr_user = Users.get_user!(id)
+      {:ok, _user} = Users.delete_user(curr_user)
 
-    conn
-    |> put_flash(:info, "User deleted successfully.")
-    |> redirect(to: Routes.user_path(conn, :index))
+      conn
+      |> put_flash(:info, "Worker deleted successfully.")
+      |> redirect(to: Routes.user_path(conn, :index))
+    else
+      conn
+      |> put_flash(:error, "Invalid operation.")
+    end
   end
 end

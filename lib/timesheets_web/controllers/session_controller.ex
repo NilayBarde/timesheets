@@ -5,10 +5,11 @@ defmodule TimesheetsWeb.SessionController do
     render(conn, "new.html")
   end
 
-  def create(conn, %{"email" => email, "password" => password}) do
-    user = Timesheets.Users.authenticate(email, password)   
+  def create(conn, %{"email" => email, "password" => password, "type" => type}) do
+    user = Timesheets.Users.authenticate(email, password, type)   
     if user do
       conn
+      |> put_session(:type, type)
       |> put_session(:user_id, user.id)
       |> put_flash(:info, "Welcome back #{user.email}")
       |> redirect(to: Routes.page_path(conn, :index))
