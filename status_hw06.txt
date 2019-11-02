@@ -1,0 +1,37 @@
+
+Web Dev Fall 2019 HW06 Status
+
+Answer the following questions:
+
+
+1. What's your name?
+
+Nilay Barde
+
+
+2. What's the URL of the github repo with your work for this HW?
+
+https://github.com/NilayBarde/timesheets
+
+
+3. What's the version number of your github release?
+
+aa931a1 (I think you are asking for the commit number)
+
+4. What's the URL that you deployed to?
+
+http://time1.bardenilay.com/
+
+5. Is your app functionality complete? If not, what's missing?
+
+I was having a lot of trouble getting the timesheets tables and the jobs tables to be shown in the proper places.
+I made what I would want the tables to be in the migrations folder.
+
+6. Is your app properly deployed? If not, what went wrong?
+
+It is properly deployed.
+
+And here's a list of tasks for grading comments. Just leave this here:
+ - Development
+ - Deployment
+ - Submission
