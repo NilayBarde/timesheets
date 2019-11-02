@@ -5,7 +5,6 @@
     <tr>
       <th>Email</th>
       <th>Name</th>
-      <th>Is Manager?</th>
 
       <th></th>
     </tr>
@@ -15,7 +14,6 @@
     <tr>
       <td><%= user.email %></td>
       <td><%= user.name %></td>
-      <td><%= user.is_manager %></td>
 
       <td>
         <span><%= link "Show", to: Routes.user_path(@conn, :show, user) %></span>
